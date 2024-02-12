@@ -137,7 +137,10 @@ const Body =()=>{
             <RestaurantCard  resData={restroData[6]}/>
             <RestaurantCard  resData={restroData[7]}/>
             <RestaurantCard  resData={restroData[8]}/> */}
-            {
+            {    // this index methodology is not recommended
+                //  restroData.map((row,index)=> <RestaurantCard key={index} resData={row}/>)
+
+                // key is there for not loading whole cards in the container when new card is added
              restroData.map(row=> <RestaurantCard key={row.info.id} resData={row}/>)
             }
           </div>
