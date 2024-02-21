@@ -1228,7 +1228,6 @@ const restroData =  [
             "type": "DEEPLINK"
           }
         }
-      ]
+      ];
 
-
-module.exports = restroData;
+export default restroData;
