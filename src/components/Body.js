@@ -1,6 +1,6 @@
 import RestaurantCard from "./RestaurantCard"
 import restroData from "../utils/mockRestroData";
-import {useState} from 'react'
+import {useState} from 'react';
 
 //let restroDataVar = restroData;
 const Body =()=>{
