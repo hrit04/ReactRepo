@@ -4,6 +4,11 @@ import ReactDom from "react-dom/client";
 import Header  from "./src/components/Header";
 import Body from "./src/components/Body";
 import restroData from "./src/utils/mockRestroData";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import About from "./src/components/About";
+import Contact from "./src/components/Contact";
+import Cart from "./src/components/Cart";
+import Error from "./src/components/Error";
 // <div id="parent">
 // <div id="child">
 //     <h1>
@@ -151,12 +156,59 @@ import restroData from "./src/utils/mockRestroData";
 // }
 
 
+
+
 const Applayout =()=>(
     <div className="app">
         <Header/>
-        <Body/>
+        <Outlet/>
     </div>
 )
 
+const appRouter = createBrowserRouter([
+    {
+        path:"/",
+        element: <Applayout/>,
+        children:[
+            {
+                path:"/",
+                element: <Body/>,
+                errorElement : <Error/>
+             },
+            {
+                path:"/about",
+                element: <About/>,
+                errorElement : <Error/>
+             },
+             {
+                path:"/contact",
+                element: <Contact/>,
+                errorElement : <Error/>
+             },
+             {
+                path:"/cart",
+                element: <Cart/>,
+                errorElement : <Error/>
+             }
+        ],
+        errorElement : <Error/>
+     },
+     {
+        path:"/about",
+        element: <About/>,
+        errorElement : <Error/>
+     },
+     {
+        path:"/contact",
+        element: <Contact/>,
+        errorElement : <Error/>
+     },
+     {
+        path:"/cart",
+        element: <Cart/>,
+        errorElement : <Error/>
+     }
+    ])
+
 let root = ReactDom.createRoot(document.getElementById("root"));
-root.render(<Applayout/>)
+root.render(<RouterProvider router ={appRouter}/>)
