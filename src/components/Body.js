@@ -1,12 +1,13 @@
 import RestaurantCard from "./RestaurantCard"
 import restroData from "../utils/mockRestroData";
-import {useState} from 'react';
+import { useState } from 'react';
 import { useEffect } from "react";
 import Shimmer from "./shimmer";
+import { Link } from "react-router-dom";
 
 //let restroDataVar = restroData;
 //var restroDataAlways="";
-const Body =()=>{
+const Body = () => {
 
   /*
   Whenever there is a change in state variables , reacts finds the difference between the virtual DOM using reconcilation algorithms
@@ -28,25 +29,25 @@ const Body =()=>{
 
   //whenever the state variable updated , react call the reconcilation cycle or rerender the whole component
   console.log(searchText);
-  useEffect(()=>{
+  useEffect(() => {
     console.log("useEffect called");
     fetchData();
   }, []);
 
-// by passing the cors issue using https://corsproxy.org/?
-async function fetchData() {
-   const res = await fetch("https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Frestaurants%2Flist%2Fv5%3Flat%3D23.022505%26lng%3D72.5713621%26page_type%3DDESKTOP_WEB_LISTING");
-   const json = await res.json();
-   setrestroDataVar(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-   setfilteredRestro(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-   //restroDataAlways = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
-   console.log(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
-}
+  // by passing the cors issue using https://corsproxy.org/?
+  async function fetchData() {
+    const res = await fetch("https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Frestaurants%2Flist%2Fv5%3Flat%3D23.022505%26lng%3D72.5713621%26page_type%3DDESKTOP_WEB_LISTING");
+    const json = await res.json();
+    setrestroDataVar(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    setfilteredRestro(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    //restroDataAlways = json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+    console.log(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
+  }
 
-// conditional rendering
-// if(restroDataVar.length==0){
-//   return <Shimmer/>
-// }
+  // conditional rendering
+  // if(restroDataVar.length==0){
+  //   return <Shimmer/>
+  // }
 
 
 
@@ -60,43 +61,44 @@ async function fetchData() {
   useEffect()
 
   */
-    return restroDataVar.length==0 ? <Shimmer/> : (
-        <div className="body">
-          <div className="filter">
-            <div className="search">
-              <input type="text" 
-              className="search-box" 
-              value={searchText}
-              onChange={(e)=>{
-                setsearchText(e.target.value);
-              }}
-              ></input>
-              <button onClick={()=>{
-                //Filter the restrocards and update the UI
-                console.log(searchText);
-                const filteredRestro= restroDataVar.filter((restro)=>{
-                   return restro.info.name.toLowerCase().includes(searchText.toLowerCase());
-                })
-                setfilteredRestro(filteredRestro);
-              }}>Search</button>
-            </div>
-            <button className="filter-btn" onClick={()=>{
-              let filteredList = restroDataVar.filter((res)=>{
-                console.log(res.info.avgRating)
-                return res.info.avgRating > 4
-              } 
-              )
-              setfilteredRestro(filteredList);
-              console.log('clicked', restroDataVar);
-            }}>Top Rated Restaurants</button>
-          </div>
-          <div className="res-container"> 
-            {
-             filteredRestro.map(row=> <RestaurantCard key={row.info.id} resData={row}/>)
-            }
-          </div>
+  return restroDataVar.length == 0 ? <Shimmer /> : (
+    <div className="body">
+      <div className="filter">
+        <div className="search">
+          <input type="text"
+            className="search-box"
+            value={searchText}
+            onChange={(e) => {
+              setsearchText(e.target.value);
+            }}
+          ></input>
+          <button onClick={() => {
+            //Filter the restrocards and update the UI
+            console.log(searchText);
+            const filteredRestro = restroDataVar.filter((restro) => {
+              return restro.info.name.toLowerCase().includes(searchText.toLowerCase());
+            })
+            setfilteredRestro(filteredRestro);
+          }}>Search</button>
         </div>
-    )
+        <button className="filter-btn" onClick={() => {
+          let filteredList = restroDataVar.filter((res) => {
+            console.log(res.info.avgRating)
+            return res.info.avgRating > 4
+          }
+          )
+          setfilteredRestro(filteredList);
+          console.log('clicked', restroDataVar);
+        }}>Top Rated Restaurants</button>
+      </div>
+      <div className="res-container">
+        {
+          filteredRestro.map(row => 
+          <Link key={row.info.id} to={"/restaurants/" + row.info.id}><RestaurantCard  resData={row} /></Link>)
+        }
+      </div>
+    </div>
+  )
 }
 
 export default Body;

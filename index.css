@@ -33,7 +33,10 @@
     cursor: pointer;
 }
 .search{
-    padding: 10px;
+   
+    padding-left: 400px;
+    padding-top: 10px;
+    padding-bottom: 0px;
 }
 .res-logo{
     width: 100%;
@@ -62,3 +65,4 @@
 .error-text{
   display: flex;
 }
+
