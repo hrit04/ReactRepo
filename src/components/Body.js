@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useEffect } from "react";
 import Shimmer from "./shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 //let restroDataVar = restroData;
 //var restroDataAlways="";
@@ -61,6 +62,15 @@ const Body = () => {
   useEffect()
 
   */
+
+  const onlineStatus = useOnlineStatus()
+
+  console.log(onlineStatus);
+
+  if (onlineStatus ===false) {
+    return <h1> Seems like you are offline, Please check your Internet Connection</h1>;
+  }
+
   return restroDataVar.length == 0 ? <Shimmer /> : (
     <div className="body">
       <div className="filter">

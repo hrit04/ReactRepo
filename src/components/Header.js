@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import LOGO_URL from "../utils/constants";
 import { Link } from 'react-router-dom';
 
+import useOnlineStatus from '../utils/useOnlineStatus';
+
 /*
 
 Link just refreshes the component
@@ -14,6 +16,7 @@ and <a> anker tag reloads the whole page
 const Header = () => {
 
     const [btnName, setbtnName] = useState("login");
+    const onlineStatus = useOnlineStatus();
     //if no dependency array => useEffect will be called in every render
     //if no dependency array is empty => useEffect will be called in initial render
     //if dependency array is [btnName] => useEffect will be called when btnName value will be changed
@@ -28,6 +31,7 @@ const Header = () => {
             </div>
             <div className="nav-items">
                 <ul>
+                    <li>{ (onlineStatus) ? ':)' : ':(' }</li>
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/about">About US</Link></li>
                     <li><Link to="/contact">Contact US</Link></li>
