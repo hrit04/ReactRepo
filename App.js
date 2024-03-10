@@ -1,15 +1,33 @@
 
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDom from "react-dom/client";
 import Header  from "./src/components/Header";
 import Body from "./src/components/Body";
 import restroData from "./src/utils/mockRestroData";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
-import About from "./src/components/About";
+// import About from "./src/components/About";
 import Contact from "./src/components/Contact";
 import Cart from "./src/components/Cart";
 import Error from "./src/components/Error";
 import RestaurantMenu from "./src/components/RestaurantMenu";
+import Login from "./src/components/Login";
+// import Grocery from "./src/components/Grocery";
+
+
+/*
+Read: 
+Chunking
+Lazy loading
+Dynamic Bundling
+Code Spliting
+On demand loading
+*/
+
+
+const Grocery = lazy(()=>import("./src/components/Grocery"));
+const About = lazy(()=>import("./src/components/About"));
+
+
 // <div id="parent">
 // <div id="child">
 //     <h1>
@@ -178,7 +196,7 @@ const appRouter = createBrowserRouter([
              },
             {
                 path:"/about",
-                element: <About/>,
+                element: (<Suspense fallback={<h1>Loading About.....</h1>}> <About/> </Suspense>),
                 errorElement : <Error/>
              },
              {
@@ -190,7 +208,22 @@ const appRouter = createBrowserRouter([
                 path:"/cart",
                 element: <Cart/>,
                 errorElement : <Error/>
-             }
+             },
+             {
+               path:"/grocery",
+               element: (<Suspense fallback={<h1>Loading Grocery.....</h1>}> <Grocery/> </Suspense>),
+               errorElement : <Grocery/>
+            },
+            {
+               path:"/login",
+               element: (<Suspense fallback={<h1>Loading Loading.....</h1>}> <Login/> </Suspense>),
+               errorElement : <Error/>
+            },
+            {
+               path:"/restaurants/:resId",
+               element: <RestaurantMenu/>,
+               errorElement : <Error/>
+            }
         ],
         errorElement : <Error/>
      },
@@ -212,7 +245,12 @@ const appRouter = createBrowserRouter([
         path:"/restaurants/:resId",
         element: <RestaurantMenu/>,
         errorElement : <Error/>
-     }
+     },
+     {
+      path:"/login",
+      element: (<Suspense fallback={<h1>Loading Loading.....</h1>}> <Login/> </Suspense>),
+      errorElement : <Login/>
+   }
     ])
 
 let root = ReactDom.createRoot(document.getElementById("root"));

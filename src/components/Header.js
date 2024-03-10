@@ -25,25 +25,28 @@ const Header = () => {
     },[btnName])
     console.log("header rendered");
     return (
-        <div className="header">
+        <div className="flex justify-between bg-pink-200 shadow-2xl">
             <div className="logo-container">
-                <img className="logo" src={LOGO_URL} />
+                <img className="h-32" src={LOGO_URL} />
             </div>
-            <div className="nav-items">
-                <ul>
-                    <li>{ (onlineStatus) ? ':)' : ':(' }</li>
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="/about">About US</Link></li>
-                    <li><Link to="/contact">Contact US</Link></li>
-                    <li><Link to ="/cart">Cart</Link></li>
-                    <button className="login" onClick={() => {
+            <div className="flex items-center">
+                <ul className='flex justify-between p-4 m-4'>
+                    <li className='px-4'>Online Status { (onlineStatus) ? '✅' : '🚨' }</li>
+                    <li className='px-4'><Link to="/">Home</Link></li>
+                    <li className='px-4'><Link to="/about">About US</Link></li>
+                    <li className='px-4'><Link to="/contact">Contact US</Link></li>
+                    <li className='px-4'><Link to ="/cart">Cart</Link></li>
+                    <li className='px-4'><Link to ="/grocery">Grocery</Link></li>
+                    <li className='px-4'><Link to ="/login">Login</Link></li>
+                    {/* <button className="login inline-block h-6 w-6 rounded-full ring-2 ring-white"  onClick={() => {
                         if (btnName == "login") {
+                           
                             setbtnName("logout");
                         } else {
                             setbtnName("login");
                         }
 
-                    }}>{btnName}</button>
+                    }}>{btnName}</button> */}
                 </ul>
             </div>
 

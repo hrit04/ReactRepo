@@ -1,3 +1,5 @@
+/*
+
 .heading {
   color: blue;
 }
@@ -65,4 +67,8 @@
 .error-text{
   display: flex;
 }
+*/
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

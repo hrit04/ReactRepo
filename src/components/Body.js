@@ -1,10 +1,12 @@
-import RestaurantCard from "./RestaurantCard"
+import RestaurantCard, { PromotedRestaurantCard } from "./RestaurantCard"
 import restroData from "../utils/mockRestroData";
 import { useState } from 'react';
 import { useEffect } from "react";
 import Shimmer from "./shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+
+const FilteredRestaurantCard = PromotedRestaurantCard(RestaurantCard);
 
 //let restroDataVar = restroData;
 //var restroDataAlways="";
@@ -67,22 +69,23 @@ const Body = () => {
 
   console.log(onlineStatus);
 
-  if (onlineStatus ===false) {
+  if (onlineStatus === false) {
     return <h1> Seems like you are offline, Please check your Internet Connection</h1>;
   }
 
+  console.log("restroDataVar", restroDataVar);
   return restroDataVar.length == 0 ? <Shimmer /> : (
     <div className="body">
-      <div className="filter">
-        <div className="search">
+      <div className="filter flex">
+        <div className="search m-4 px-4">
           <input type="text"
-            className="search-box"
+            className="border border-solid border-black"
             value={searchText}
             onChange={(e) => {
               setsearchText(e.target.value);
             }}
           ></input>
-          <button onClick={() => {
+          <button className='px-4 m-4 bg-green-100 rounded-lg' onClick={() => {
             //Filter the restrocards and update the UI
             console.log(searchText);
             const filteredRestro = restroDataVar.filter((restro) => {
@@ -91,20 +94,28 @@ const Body = () => {
             setfilteredRestro(filteredRestro);
           }}>Search</button>
         </div>
-        <button className="filter-btn" onClick={() => {
-          let filteredList = restroDataVar.filter((res) => {
-            console.log(res.info.avgRating)
-            return res.info.avgRating > 4
-          }
-          )
-          setfilteredRestro(filteredList);
-          console.log('clicked', restroDataVar);
-        }}>Top Rated Restaurants</button>
+
+
+        <div className="px-0 py-0 m-8 bg-blue-500 flex items-center rounded-lg">
+          <button className="filter-btn" onClick={() => {
+            let filteredList = restroDataVar.filter((res) => {
+              console.log(res.info.avgRating)
+              return res.info.avgRating > 4
+            }
+            )
+            setfilteredRestro(filteredList);
+            console.log('clicked', restroDataVar);
+          }}>Top Choices</button>
+        </div>
+
       </div>
-      <div className="res-container">
+      <div className="flex flex-wrap">
         {
-          filteredRestro.map(row => 
-          <Link key={row.info.id} to={"/restaurants/" + row.info.id}><RestaurantCard  resData={row} /></Link>)
+          filteredRestro.map( (row) => (
+              <Link key={row.info.id} to={"/restaurants/" + row.info.id}>
+              {row.info.aggregatedDiscountInfoV3?.header  ? ( <FilteredRestaurantCard resData={row} /> ) : ( <RestaurantCard resData={row} />) }
+              </Link> 
+          ))
         }
       </div>
     </div>
