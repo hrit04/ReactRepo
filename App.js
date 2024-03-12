@@ -1,7 +1,7 @@
 
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import ReactDom from "react-dom/client";
-import Header  from "./src/components/Header";
+import Header from "./src/components/Header";
 import Body from "./src/components/Body";
 import restroData from "./src/utils/mockRestroData";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
@@ -11,6 +11,9 @@ import Cart from "./src/components/Cart";
 import Error from "./src/components/Error";
 import RestaurantMenu from "./src/components/RestaurantMenu";
 import Login from "./src/components/Login";
+import UserContext from "./src/utils/UserContext";
+import { Provider } from "react-redux";
+import appStore from "./src/utils/appStore";
 // import Grocery from "./src/components/Grocery";
 
 
@@ -24,8 +27,8 @@ On demand loading
 */
 
 
-const Grocery = lazy(()=>import("./src/components/Grocery"));
-const About = lazy(()=>import("./src/components/About"));
+const Grocery = lazy(() => import("./src/components/Grocery"));
+const About = lazy(() => import("./src/components/About"));
 
 
 // <div id="parent">
@@ -147,7 +150,7 @@ const About = lazy(()=>import("./src/components/About"));
 //         //    rating="4.5 rating"
 //         //    timetaken="38 min"
 //         //    image="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_264,h_324,c_fill/f01666ac73626461d7455d9c24005cd4"
-           
+
 //           /> 
 //            <RestaurantCard resData={restroData[1]}
 //         //    resName="Dominos"
@@ -174,84 +177,97 @@ const About = lazy(()=>import("./src/components/About"));
 //     )
 // }
 
+const Applayout = () => {
 
+   const [userName, setuserName] = useState();
 
+   useEffect(() => {
+      const data = {
+         name: "Hritam"
+      };
+      setuserName(data.name);
+   }, [])
 
-const Applayout =()=>(
-    <div className="app">
-        <Header/>
-        <Outlet/>
-    </div>
-)
+   return (
+      <Provider store={appStore}>
+      {/* <UserContext.Provider value={{ loggedInUser: userName, setuserName }}> */}
+         <div className="app">
+            <Header />
+            <Outlet />
+         </div>
+      {/* </UserContext.Provider> */}
+      </Provider>
+   )
+}
 
 const appRouter = createBrowserRouter([
-    {
-        path:"/",
-        element: <Applayout/>,
-        children:[
-            {
-                path:"/",
-                element: <Body/>,
-                errorElement : <Error/>
-             },
-            {
-                path:"/about",
-                element: (<Suspense fallback={<h1>Loading About.....</h1>}> <About/> </Suspense>),
-                errorElement : <Error/>
-             },
-             {
-                path:"/contact",
-                element: <Contact/>,
-                errorElement : <Error/>
-             },
-             {
-                path:"/cart",
-                element: <Cart/>,
-                errorElement : <Error/>
-             },
-             {
-               path:"/grocery",
-               element: (<Suspense fallback={<h1>Loading Grocery.....</h1>}> <Grocery/> </Suspense>),
-               errorElement : <Grocery/>
-            },
-            {
-               path:"/login",
-               element: (<Suspense fallback={<h1>Loading Loading.....</h1>}> <Login/> </Suspense>),
-               errorElement : <Error/>
-            },
-            {
-               path:"/restaurants/:resId",
-               element: <RestaurantMenu/>,
-               errorElement : <Error/>
-            }
-        ],
-        errorElement : <Error/>
-     },
-     {
-        path:"/about",
-        element: <About/>,
-        errorElement : <Error/>
-     },
-     {
-        path:"/contact",
-        element: <Contact/>,
-        errorElement : <Error/>
-     },
-     {
-        path:"/cart",
-        element: <Cart/>,
-        errorElement : <Error/>
-     },{
-        path:"/restaurants/:resId",
-        element: <RestaurantMenu/>,
-        errorElement : <Error/>
-     },
-     {
-      path:"/login",
-      element: (<Suspense fallback={<h1>Loading Loading.....</h1>}> <Login/> </Suspense>),
-      errorElement : <Login/>
+   {
+      path: "/",
+      element: <Applayout />,
+      children: [
+         {
+            path: "/",
+            element: <Body />,
+            errorElement: <Error />
+         },
+         {
+            path: "/about",
+            element: (<Suspense fallback={<h1>Loading About.....</h1>}> <About /> </Suspense>),
+            errorElement: <Error />
+         },
+         {
+            path: "/contact",
+            element: <Contact />,
+            errorElement: <Error />
+         },
+         {
+            path: "/cart",
+            element: <Cart />,
+            errorElement: <Error />
+         },
+         {
+            path: "/grocery",
+            element: (<Suspense fallback={<h1>Loading Grocery.....</h1>}> <Grocery /> </Suspense>),
+            errorElement: <Grocery />
+         },
+         {
+            path: "/login",
+            element: (<Suspense fallback={<h1>Loading Loading.....</h1>}> <Login /> </Suspense>),
+            errorElement: <Error />
+         },
+         {
+            path: "/restaurants/:resId",
+            element: <RestaurantMenu />,
+            errorElement: <Error />
+         }
+      ],
+      errorElement: <Error />
+   },
+   {
+      path: "/about",
+      element: <About />,
+      errorElement: <Error />
+   },
+   {
+      path: "/contact",
+      element: <Contact />,
+      errorElement: <Error />
+   },
+   {
+      path: "/cart",
+      element: <Cart />,
+      errorElement: <Error />
+   }, {
+      path: "/restaurants/:resId",
+      element: <RestaurantMenu />,
+      errorElement: <Error />
+   },
+   {
+      path: "/login",
+      element: (<Suspense fallback={<h1>Loading Loading.....</h1>}> <Login /> </Suspense>),
+      errorElement: <Login />
    }
-    ])
+])
 
 let root = ReactDom.createRoot(document.getElementById("root"));
-root.render(<RouterProvider router ={appRouter}/>)
+root.render(<RouterProvider router={appRouter} />)
