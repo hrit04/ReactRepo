@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1710326770486" clover="3.2.0">
-  <project timestamp="1710326770486" name="All files">
-    <metrics statements="32" coveredstatements="11" conditionals="2" coveredconditionals="0" methods="11" coveredmethods="1" elements="45" coveredelements="12" complexity="0" loc="32" ncloc="32" packages="2" files="7" classes="7"/>
+<coverage generated="1710345748659" clover="3.2.0">
+  <project timestamp="1710345748659" name="All files">
+    <metrics statements="32" coveredstatements="26" conditionals="2" coveredconditionals="1" methods="11" coveredmethods="6" elements="45" coveredelements="33" complexity="0" loc="32" ncloc="32" packages="2" files="7" classes="7"/>
     <package name="components">
-      <metrics statements="13" coveredstatements="3" conditionals="2" coveredconditionals="0" methods="4" coveredmethods="1"/>
+      <metrics statements="13" coveredstatements="13" conditionals="2" coveredconditionals="1" methods="4" coveredmethods="4"/>
       <file name="Contact.js" path="/Users/hritamchowdhury/Downloads/Hritam's Personal copy /ReactRepo/src/components/Contact.js">
         <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="4" type="stmt"/>
       </file>
       <file name="Header.js" path="/Users/hritamchowdhury/Downloads/Hritam's Personal copy /ReactRepo/src/components/Header.js">
-        <metrics statements="11" coveredstatements="1" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <metrics statements="11" coveredstatements="11" conditionals="2" coveredconditionals="1" methods="3" coveredmethods="3"/>
         <line num="20" count="1" type="stmt"/>
-        <line num="22" count="0" type="stmt"/>
-        <line num="23" count="0" type="stmt"/>
-        <line num="26" count="0" type="stmt"/>
-        <line num="28" count="0" type="stmt"/>
-        <line num="32" count="0" type="stmt"/>
-        <line num="33" count="0" type="stmt"/>
-        <line num="35" count="0" type="stmt"/>
-        <line num="37" count="0" type="stmt"/>
-        <line num="38" count="0" type="stmt"/>
-        <line num="39" count="0" type="stmt"/>
+        <line num="22" count="2" type="stmt"/>
+        <line num="23" count="2" type="stmt"/>
+        <line num="26" count="2" type="stmt"/>
+        <line num="28" count="2" type="stmt"/>
+        <line num="32" count="2" type="stmt"/>
+        <line num="33" count="2" type="stmt"/>
+        <line num="35" count="2" type="stmt"/>
+        <line num="37" count="4" type="stmt"/>
+        <line num="38" count="2" type="stmt"/>
+        <line num="39" count="2" type="stmt"/>
       </file>
     </package>
     <package name="utils">
-      <metrics statements="19" coveredstatements="8" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="0"/>
+      <metrics statements="19" coveredstatements="13" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="2"/>
       <file name="UserContext.js" path="/Users/hritamchowdhury/Downloads/Hritam's Personal copy /ReactRepo/src/utils/UserContext.js">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="5" count="1" type="stmt"/>
@@ -49,16 +49,16 @@
         <line num="8" count="1" type="stmt"/>
       </file>
       <file name="useOnlineStatus.js" path="/Users/hritamchowdhury/Downloads/Hritam's Personal copy /ReactRepo/src/utils/useOnlineStatus.js">
-        <metrics statements="9" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <metrics statements="9" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="2"/>
         <line num="3" count="1" type="stmt"/>
-        <line num="5" count="0" type="stmt"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="10" count="0" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="10" count="2" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
         <line num="16" count="0" type="stmt"/>
-        <line num="21" count="0" type="stmt"/>
+        <line num="21" count="2" type="stmt"/>
       </file>
     </package>
   </project>
