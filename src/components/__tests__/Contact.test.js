@@ -6,7 +6,7 @@ import "@testing-library/jest-dom"
 
 describe("Contact page test suit", ()=>{
 
-    test("Contact page loading ", ()=>{
+    it("Contact page loading ", ()=>{
 
         render(<Contact/>);
     
@@ -15,7 +15,7 @@ describe("Contact page test suit", ()=>{
     
     })
     
-    test("IS button there inside Contact page", ()=>{
+    it("IS button there inside Contact page", ()=>{
     
         render(<Contact/>);
     
@@ -25,7 +25,7 @@ describe("Contact page test suit", ()=>{
     
     })
 
-    test("IS button there inside Placeholder ", ()=>{
+    it("IS button there inside Placeholder ", ()=>{
     
         render(<Contact/>);
         const placeholder = screen.getByPlaceholderText("name");
@@ -33,7 +33,7 @@ describe("Contact page test suit", ()=>{
     
     })
 
-    test("Is two input boxes there", ()=>{
+    it("Is two input boxes there", ()=>{
         render(<Contact/>);
         const inputBoxes = screen.getAllByRole("textbox"); 
         // inputBoxes is basically virtual dom react element
