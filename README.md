@@ -50,3 +50,43 @@ Read about dif bundlers: vite, webpack, parcel
 ● Read about: ^ - caret and ~ - tilda
 
 ● Read about Script types in html (MDN Docs)
+
+
+Assignment 3:
+
+
+
+JSX
+● React.createElement vs JSX
+-> JSX allows to write html type of code in js file. where with React.createElement  we hae to pass like props
+
+React.createElement(
+  type,
+  [props],
+  [...children]
+)
+
+● Benefits of JSX
+-> Easy to read compare to React.createElement
+● Behind the Scenes of JSX
+-> JSX is not a valid javascript so browser don't understand , we need a traspiller like babel to convert jsx to React.createElement.This occurs during the build process, so the browser will never know JSX was present in the first place. The browser, in turn, receives a tree of objects that have been described using the React API.
+
+● Babel & parcel role in JSX
+-> BAbel : transpiller 
+   parcel : bundlers in build process
+● Components
+->
+● Functional Components
+->
+○ Composing Components
+->
+example: 
+const DropdownExampleDropdown = () => (
+ <Dropdown text='File'>
+ <Dropdown.Menu>
+ <Dropdown.Item text='New' />
+ <Dropdown.Divider />
+ </Dropdown.Menu>
+ </Dropdown>
+)
+export default DropdownExampleDropdown
