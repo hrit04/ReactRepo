@@ -1,6 +1,6 @@
 
 import { useState, useEffect, useContext } from 'react';
-import {LOGO_URL} from "../utils/constants";
+import LOGO_URL from "../utils/constants";
 import { Link } from 'react-router-dom';
 
 import useOnlineStatus from '../utils/useOnlineStatus';
@@ -37,9 +37,9 @@ console.log('context', loggedInUser);
     const cartItem = useSelector((store) => store.cart.items);
     console.log(cartItem);
     return (
-        <div className="flex justify-between bg-pink-200 shadow-2xl">
+        <div className="flex justify-between bg-indigo-200 shadow-2xl">
             <div className="logo-container">
-                <img className="h-32" src={LOGO_URL} />
+                <img className="h-24" src={LOGO_URL} />
             </div>
             <div className="flex items-center">
                 <ul className='flex justify-between p-4 m-4'>

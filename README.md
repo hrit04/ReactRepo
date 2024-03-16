@@ -81,7 +81,7 @@ React.createElement(
 ○ Composing Components
 ->
 example: 
-const DropdownExampleDropdown = () => (
+● const DropdownExampleDropdown = () => (
  <Dropdown text='File'>
  <Dropdown.Menu>
  <Dropdown.Item text='New' />
@@ -90,3 +90,30 @@ const DropdownExampleDropdown = () => (
  </Dropdown>
 )
 export default DropdownExampleDropdown
+
+
+● Role of type attribute in script tag? What options can I use there?
+
+-> he HTML <script> type Attribute is used to specify the MIME type of script and identify the content of the Tag. It has a Default value which is “text/javascript”.
+
+● {TitleComponent} -> if the component is a fucntion or a variable
+ vs {<TitleComponent/>} vs -> don't have children
+{<TitleComponent></TitleComponent>} in JSX -> have children
+
+
+
+● Create a Nested header Element using React.createElement(h1,h2,h3 inside a
+div with class “title”)
+○ Create the same element using JSX
+○ Create a functional component of the same with JSX
+○ Pass attributes into the tag in JSX
+
+
+
+● Create a Header Component from scratch using Functional Components with
+JSX
+○ Add a Logo on left
+○ Add a search bar in middle
+○ Add User icon on right
+○ Add CSS to make it look nice
+
